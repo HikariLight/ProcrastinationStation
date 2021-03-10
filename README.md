@@ -1,24 +1,11 @@
-# procrastination-station
+# Procrastination Station to-do list app
 
-## Project setup
-```
-npm install
-```
+## Group members
+- MERZOUGUI Dhia Eddine G3A (21812920)
+- MERCIER Juliee G3A
+- HEIDARI Schahin 
 
-### Compiles and hot-reloads for development
+## How to run
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
