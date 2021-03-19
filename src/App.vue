@@ -13,7 +13,7 @@
       </li>
     </ul>
 
-    <!-- <h4 v-if="entryList.length === 0">Nothing here</h4> -->
+    <h4 v-if="entryList.length === 0">Nothing here</h4>
 </template>
 
 <script>
@@ -21,6 +21,8 @@ import { ref } from "vue";
 
 export default {
   setup(){
+      localStorage.clear();
+      
 			const newEntry = ref("");
 			const defaultData = [{
 				done: false,
@@ -78,7 +80,7 @@ input{
 button{
   padding: 10px;
   margin: 1em;
-  border-radius: 10px;
+  border-radius: 5px;
   border: #FFFFFF;
   background-color: #14971F;
   color: #FFFFFF;
