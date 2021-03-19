@@ -1,14 +1,16 @@
-<template>    
+<template>
     <form @submit.prevent="addEntry">
       <label>New Entry</label>
       <input v-model="newEntry" name="entry" autocomplete="off">
-      <button>Add Entry</button>
+      <button id="add-button">Add Entry</button>
     </form>
 
     <ul>
       <li v-for="(entry, index) in entryList" :key="index">
-		<input @change="doneTodo(entry)" type="checkbox" id="checkbox">
+		<input @change="doneTodo(entry)" type="checkbox">
         <label :class="{ done : entry.done}">{{entry.todo}}</label>
+		<button class="list-buttons" id="edit"></button>
+		<button class="list-buttons" id="delete" @click="deleteEntry(index)"></button>
       </li>
     </ul>
 </template>
@@ -21,13 +23,8 @@ export default {
 		localStorage.clear(); //Clearing out the list from previous browsing session
 		const newEntry = ref("");
 
-		const entryData = [{
-			done: false,
-			todo: ""
-		}];
+		const entryList = ref([{}]);
 
-		const entryList = ref(entryData);
-		
 		function addEntry () {
 			if (newEntry.value) {
 				entryList.value.push({
@@ -49,12 +46,18 @@ export default {
 			saveData();
 		}
 
+		function deleteEntry (index) {
+			entryList.value.splice(index, 1);
+			saveData();
+		}
+
 		return {
 			entryList,
 			newEntry,
 			addEntry,
 			saveData,
 			doneTodo,
+			deleteEntry
 		}
 	}
 }
@@ -75,7 +78,7 @@ input{
   padding: 1em;
 }
 
-button{
+#add-button{
   padding: 10px;
   margin: 1em;
   border-radius: 5px;
@@ -91,4 +94,25 @@ li{
 .done{
 	text-decoration: line-through;
 }
+
+.list-buttons {
+	background-color: #ffffff;
+	border: none;
+	margin: 0px 5px;
+	height: 16px;
+	width: 16px;
+}
+
+#edit{
+	background-image: url('../assets/edit-button.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+#delete{
+	background-image: url('../assets/delete.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
 </style>
