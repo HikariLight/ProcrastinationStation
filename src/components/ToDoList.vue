@@ -20,12 +20,12 @@ export default {
 	setup(){
 		localStorage.clear(); //Clearing out the list from previous browsing session
 		const newEntry = ref("");
-		const defaultData = [{
+
+		const entryData = [{
 			done: false,
 			todo: ""
-		}]
+		}];
 
-		const entryData = JSON.parse(localStorage.getItem('entryList')) || defaultData;
 		const entryList = ref(entryData);
 		
 		function addEntry () {
