@@ -1,18 +1,16 @@
 <template>    
     <form @submit.prevent="addEntry">
       <label>New Entry</label>
-      <input v-model="newEntry" name="entry">
+      <input v-model="newEntry" name="entry" autocomplete="off">
       <button>Add Entry</button>
     </form>
 
     <ul>
       <li v-for="(entry, index) in entryList" :key="index">
-		<input type="checkbox" id="checkbox">
-        <label>{{entry.todo}}</label>
+		<input @change="doneTodo(entry)" type="checkbox" id="checkbox">
+        <label :class="{ done : entry.done}">{{entry.todo}}</label>
       </li>
     </ul>
-
-    <h4 v-if="entryList.length === 0">Nothing here</h4>
 </template>
 
 <script>
@@ -20,7 +18,7 @@ import { ref } from "vue";
 
 export default {
 	setup(){
-		localStorage.clear();
+		localStorage.clear(); //Clearing out the list from previous browsing session
 		const newEntry = ref("");
 		const defaultData = [{
 			done: false,
@@ -46,11 +44,17 @@ export default {
 			localStorage.setItem('entryList', storageData);
 		}
 
+		function doneTodo(todo){
+			todo.done = !todo.done;
+			saveData();
+		}
+
 		return {
 			entryList,
 			newEntry,
 			addEntry,
-			saveData
+			saveData,
+			doneTodo,
 		}
 	}
 }
@@ -58,6 +62,11 @@ export default {
 </script>
 
 <style scoped>
+body{
+	font-size: 16px;
+}
+
+
 label{
   padding: 0.5em;
 }
@@ -73,5 +82,13 @@ button{
   border: #FFFFFF;
   background-color: #14971F;
   color: #FFFFFF;
+}
+
+li{
+	list-style-type: none;
+}
+
+.done{
+	text-decoration: line-through;
 }
 </style>
