@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="addEntry">
-      <label>New Entry</label>
+      <label>New entry:</label>
       <input v-model="newEntry" name="entry" autocomplete="off">
       <button id="add-button">Add Entry</button>
     </form>
@@ -23,7 +23,10 @@ export default {
 		localStorage.clear(); //Clearing out the list from previous browsing session
 		const newEntry = ref("");
 
-		const entryList = ref([{}]);
+		const entryList = ref([{
+			done: false,
+			todo: "Finish this project"
+		}]);
 
 		function addEntry () {
 			if (newEntry.value) {
@@ -88,6 +91,7 @@ input{
 }
 
 li{
+	margin: 10px 0px;
 	list-style-type: none;
 }
 
