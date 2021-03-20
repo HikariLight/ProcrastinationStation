@@ -9,7 +9,7 @@
       <li v-for="(entry, index) in entryList" :key="index">
 		<input @change="doneTodo(entry)" type="checkbox">
         <label :class="{ done : entry.done}">{{entry.todo}}</label>
-		<button class="list-buttons" id="edit"></button>
+		<button class="list-buttons" id="edit" @click="editEntry(entry)"></button>
 		<button class="list-buttons" id="delete" @click="deleteEntry(index)"></button>
       </li>
     </ul>
@@ -54,13 +54,19 @@ export default {
 			saveData();
 		}
 
+		function editEntry(entry){
+			let edit = prompt("To what  do you want to change the entry?", entry.todo);
+			entry.todo = edit;
+		}
+
 		return {
 			entryList,
 			newEntry,
 			addEntry,
 			saveData,
 			doneTodo,
-			deleteEntry
+			deleteEntry,
+			editEntry
 		}
 	}
 }
@@ -105,6 +111,7 @@ li{
 	margin: 0px 5px;
 	height: 16px;
 	width: 16px;
+	cursor: pointer;
 }
 
 #edit{
