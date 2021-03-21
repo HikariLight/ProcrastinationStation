@@ -9,8 +9,8 @@
       <li v-for="(entry, index) in entryList" :key="index">
 		<input @change="doneTodo(entry)" type="checkbox">
         <label :class="{ done : entry.done}">{{entry.todo}}</label>
-		<button class="list-buttons" id="edit" @click="editEntry(entry)"></button>
-		<button class="list-buttons" id="delete" @click="deleteEntry(index)"></button>
+		<button class="list-buttons" id="edit-button" @click="editEntry(entry)"></button>
+		<button class="list-buttons" id="delete-button" @click="deleteEntry(index)"></button>
       </li>
     </ul>
 </template>
@@ -114,13 +114,13 @@ li{
 	cursor: pointer;
 }
 
-#edit{
+#edit-button{
 	background-image: url('../assets/edit-button.png');
 	background-repeat: no-repeat;
 	background-size: contain;
 }
 
-#delete{
+#delete-button{
 	background-image: url('../assets/delete.png');
 	background-repeat: no-repeat;
 	background-size: contain;
