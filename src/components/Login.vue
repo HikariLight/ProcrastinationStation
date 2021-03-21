@@ -5,10 +5,10 @@
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-fapi corn for backendorm"><!--login form-->
 						<h2>Log in to your account :</h2>
-						<form action="#">
+						<form>
 							<input type="text" v-model="loginForm.username" placeholder="enter user name"/><br>
-                            <input type="password" v-model="loginForm.password" placeholder="enter your password"/><br>
-                            <button type="submit" class="btn btn-default" v-on:click="getLogin">Login</button>
+              <input type="password" v-model="loginForm.password" placeholder="enter your password"/><br>
+              <button class="btn btn-default" click.prevent="LoginUser()">Login</button>
 						</form>
 					</div><!--/login form-->
 				</div>
@@ -18,19 +18,21 @@
 </template>
 <script>
 export default {
-    name: 'Login',
-    data(){
-        return {
-            loginForm:{
-                username:null,
-                password:null
-            }
-        }
-    },
-    methods:{
-        getLogin(){
-            console.log("getLogin called", this.loginForm.username,this.loginForm.password)
-        }
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    LoginUser() {
+      const login = {
+        email: this.email,
+        password: this.password
+      };
+
+      this.$store.dispatch("LoginUser",login);
     }
-}
+  }
+};
 </script>

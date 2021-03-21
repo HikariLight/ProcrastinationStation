@@ -10,7 +10,11 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
-    "vue-router": "^3.5.1"
+    "vue-cookie": "^1.1.4",
+    "vue-resource": "^1.5.2",
+    "vue-router": "^3.5.1",
+    "vuelidate": "^0.7.6",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

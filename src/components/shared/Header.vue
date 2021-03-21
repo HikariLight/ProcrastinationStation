@@ -14,13 +14,21 @@
 
           <div class="col-sm-8 header-middle-menu">
             <div class="shop-menu pull-left">
-              <ul class="nav navbar-ltr">
+              <ul class="nav navbar-nav" v-if="!IsUserAuthenticated">
                 <li>
-                  <router-link to="/Login" active-class="active" exact><i class="fa fa-lock"></i>  login</router-link>
+                  <router-link to="/Login" active-class="active" ><i class="fa fa-lock"></i>  login</router-link>
                 </li>
                 <li>
-                 <router-link to="/Register" active-class="active" exact><i class="fa fa-user"></i> register</router-link>
+                 <router-link to="/Register" active-class="active" ><i class="fa fa-user"></i> register</router-link>
 
+                </li>
+              </ul>
+              <ul class="nav navbar-nav" v-else>
+                <li>
+                  <a> <i class="fa fa-user"></i> {{ UserFullName }} Welcome Dear, </a>
+                </li>
+                <li>
+                  <a style="cursor:pointer" @click="SignOutUser()"> <i class="fa fa-lock"></i> Exit</a>
                 </li>
               </ul>
             </div>
@@ -57,6 +65,24 @@
 
 <script>
 export default {
-
-}
+  computed: {
+    IsUserAuthenticated() {
+      return this.$store.getters.IsUserAuthenticated;
+    },
+    UserFullName() {
+      return this.$store.getters.GetUserFullName;
+    }
+  },
+  methods: {
+    CheckForLogin() {
+      this.$store.dispatch("CheckForLogin");
+    },
+    SignOutUser() {
+      this.$store.dispatch("SignOutUser");
+    }
+  },
+  created() {
+    this.CheckForLogin();
+  }
+};
 </script>

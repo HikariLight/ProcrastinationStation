@@ -12,11 +12,11 @@
               <input type="text" placeholder="First Name" v-model="registerForm.name">
               <input type="text" placeholder="Last Name" v-model="registerForm.family">
 
-              <input type="text" placeholder="Email adress" v-model="registerForm.email" @input="$v.email.$touch()" :class="{invalid:$v.email.$error}">
-              <p class="text" v-if="!$v.email.email">Email is not correct</p>
-               <p class="text" v-if="!$v.email.sameAs && $v.email.$dirty">Email is duplicated</p>
-              <p class="text" v-if="!$v.email.required && $v.email.$dirty">Please Enter your email</p>
-              <p class="text" v-if="!$v.email.maxLength">User email can not be more than {{$v.email.$params.maxLength.max}} caracters</p>
+              <input type="email" placeholder="Email adress" v-model="registerForm.email" @input="$v.email.$touch()" :class="{invalid:$v.email.$error}">
+              <p class="text-danger" v-if="!$v.email.email">Email is not correct</p>
+               <p class="text-danger" v-if="!$v.email.unique && $v.email.$dirty">Email is duplicated</p>
+              <p class="text-danger" v-if="!$v.email.required && $v.email.$dirty">Please Enter your email</p>
+              <p class="text-danger" v-if="!$v.email.maxLength">User email can not be more than {{$v.email.$params.maxLength.max}} caracters</p>
 
               <input type="password" placeholder=" Password" v-model="registerForm.password" @blur="$v.password.$touch()" :class="{invalid:$v.password.$error}">
               <p class="text" v-if="!$v.password.required && $v.password.$dirty">Please enter your password</p>
@@ -43,7 +43,7 @@
 
 
 <script>
-
+import {required, maxLength,minLength,sameAs, email} from "vuelidate/lib/validators";
 export default {
   name: 'Register',
   data() {
@@ -71,8 +71,6 @@ export default {
     }
   },
   
-};
-/*
 validations: {
     email: {
       required,
@@ -82,7 +80,7 @@ validations: {
         if (val === "") return true;
 
         return this.$http
-          .get("Account/IsExistUserByEmail", {
+          .get("IsExistUserByEmail", {
             params: { email: val }
           })
           .then(
@@ -104,7 +102,8 @@ validations: {
       sameAs: sameAs("password")
     }
   }
-*/
+};
+
 </script>
 
 <style>
