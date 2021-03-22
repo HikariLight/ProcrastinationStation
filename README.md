@@ -14,7 +14,7 @@ git clone https://github.com/HikariLight/ProcrastinationStation.git
 ```
 After the download is complete type this:
 ```
-cd procrastination-station
+cd ProcrastinationStation
 npm install
 ```
 
