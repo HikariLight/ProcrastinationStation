@@ -1,13 +1,25 @@
 <template>
   <h1>Procrastination Station</h1>
+  
+  <router-link to="/login"><button>Login</button></router-link>
+  <router-link to="/register"><button>Register</button></router-link>
+
+  <router-view/>
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
   name: 'Home',
-  components: {
-  }
 }
 </script>
+
+<style scoped>
+button{
+  padding: 10px;
+  margin: 1em;
+  border-radius: 5px;
+  border: #FFFFFF;
+  background-color: #14971F;
+  color: #FFFFFF;
+}
+</style>

@@ -1,11 +1,15 @@
 <template>
-	<h2>Log in to your account</h2>
+	<h2>Register for an account:</h2>
 	<form>
-        <label>Username: </label>
+        <label>Choose a username: </label>
 		<input type="text" placeholder="Enter your Username"/><br>
+        <label>Email: </label>
+        <input type="email" placeholder="Enter your Email"/><br>
         <label>Password: </label>
         <input type="password" placeholder="Enter your password"/><br>
-        <button>Login</button>
+        <label>Repeat your password: </label>
+        <input type="password" placeholder="Repeat your password"/><br>
+        <button>Sign up</button>
 	</form>
 </template>
 
@@ -17,6 +21,7 @@ export default {
 
 <style scoped> 
 form{
+    display: inline-block;
     text-align: center;
 }
 

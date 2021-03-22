@@ -1,14 +1,14 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/login">Login</router-link> |
-    <router-link to="/app">App</router-link>
-  </div>
-  <router-view/>
-
+  <Home />
 </template>
 
 <script>
+import Home from '@/views/Home.vue'
+
+export default{
+  components: { Home }
+}
+
 </script>
 
 <style>
@@ -18,22 +18,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-  text-decoration: none;
-  padding: 10px;
-  border-radius: 4px;
-}
-
-#nav a.router-link-exact-active{
-  color: white;
-  background: crimson;
 }
 </style>
