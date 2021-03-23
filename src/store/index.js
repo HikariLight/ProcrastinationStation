@@ -36,7 +36,7 @@ export default createStore({
     },
 
     editTodo(state, index){
-      let edit = prompt("To what do you want to change the entry?")
+      let edit = prompt("To what do you want to change the entry?", state.todos[index].content)
       state.todos[index].content = edit;
     }
   },
