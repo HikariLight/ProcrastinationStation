@@ -1,13 +1,12 @@
 <template>
-    <h1>Procrastination Station</h1>
-    <ToDoList />
+  <Home />
 </template>
 
 <script>
-import ToDoList from './components/ToDoList.vue'
+import Home from '@/views/Home.vue'
 
 export default{
-  components: { ToDoList }
+  components: { Home }
 }
 
 </script>
@@ -19,6 +18,5 @@ export default{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
