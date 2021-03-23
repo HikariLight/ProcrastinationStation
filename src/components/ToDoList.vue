@@ -1,74 +1,23 @@
 <template>
-    <form @submit.prevent="addEntry">
+    <form @submit.prevent="$store.commit('addTodo', newTodo)">
       <label>New entry:</label>
-      <input v-model="newEntry" name="entry" autocomplete="off">
-      <button id="add-button">Add Entry</button>
+      <input v-model="newTodo" name="todo" autocomplete="off">
+      <button id="add-button">Add Todo</button>
     </form>
 
     <ul>
-      <li v-for="(entry, index) in entryList" :key="index">
-		<input @change="doneTodo(entry)" type="checkbox">
-        <label :class="{ done : entry.done}">{{entry.todo}}</label>
-		<button class="list-buttons" id="edit-button" @click="editEntry(entry)"></button>
-		<button class="list-buttons" id="delete-button" @click="deleteEntry(index)"></button>
+      <li v-for="(todo, index) in $store.state.todos" :key="index">
+		<input @change="doneTodo(todo)" type="checkbox">
+        <label :class="{ done : todo.done}">{{todo.content}}</label>
+		<button class="list-buttons" id="edit-button" @click="$store.commit('editTodo', index)"></button>
+		<button class="list-buttons" id="delete-button" @click="$store.commit('deleteTodo', index)"></button>
       </li>
     </ul>
 </template>
 
 <script>
-import { ref } from "vue";
-
 export default {
-	setup(){
-		localStorage.clear(); //Clearing out the list from previous browsing session
-		const newEntry = ref("");
-
-		const entryList = ref([{
-			done: false,
-			todo: "Finish this project"
-		}]);
-
-		function addEntry () {
-			if (newEntry.value) {
-				entryList.value.push({
-					done: false,
-					todo: newEntry.value
-				});
-				newEntry.value = "";
-			}
-			saveData();
-		}
-
-		function saveData () {
-			const storageData = JSON.stringify(entryList.value);
-			localStorage.setItem('entryList', storageData);
-		}
-
-		function doneTodo(todo){
-			todo.done = !todo.done;
-			saveData();
-		}
-
-		function deleteEntry (index) {
-			entryList.value.splice(index, 1);
-			saveData();
-		}
-
-		function editEntry(entry){
-			let edit = prompt("To what  do you want to change the entry?", entry.todo);
-			entry.todo = edit;
-		}
-
-		return {
-			entryList,
-			newEntry,
-			addEntry,
-			saveData,
-			doneTodo,
-			deleteEntry,
-			editEntry
-		}
-	}
+	name: 'ToDoList',
 }
 
 </script>
@@ -77,7 +26,6 @@ export default {
 body{
 	font-size: 16px;
 }
-
 
 label{
   padding: 0.5em;
