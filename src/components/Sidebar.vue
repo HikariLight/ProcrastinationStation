@@ -4,9 +4,11 @@
 
         <ul v-for="(list, index) in getLists" :key="index">
             <li @click="$store.commit('setCurrentList', list.title)">{{ list.title }}</li>
+            <button class="list-buttons" id="edit-button" @click="$store.commit('editTodoList', index)"></button>
+            <button class="list-buttons" id="delete-button" @click="$store.commit('deleteTodoList', index)"></button>
         </ul>
 
-        <button @click="$store.commit('addTodoList')">Add new todolist</button>
+        <button id="addTodoListBtn" @click="$store.commit('addTodoList')">Add new todolist</button>
     </div>
 </template>
 
@@ -26,22 +28,25 @@ export default {
 <style scoped>
 .container{
     padding: 1em;
-    color: white;
     margin: 0px auto;
-    background-color: purple;
     border-radius: 2px;
+}
+
+h3{
+    color: purple;
 }
 
 li{
 	list-style-type: none;
     cursor: pointer;
+    margin: 10px 0px;
+    padding: 0.5em;
 }
 li:hover{
-    background-color: white;
     color: purple;
 }
 
-button{
+#addTodoListBtn{
   padding: 10px;
   margin: 1em;
   border-radius: 5px;
@@ -49,6 +54,27 @@ button{
   background-color: #14971F;
   color: #FFFFFF;
   cursor: pointer;
+}
+
+.list-buttons {
+	background-color: #ffffff;
+	border: none;
+	margin: 0px 5px;
+	height: 16px;
+	width: 16px;
+	cursor: pointer;
+}
+
+#edit-button{
+	background-image: url('../assets/edit-button.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+#delete-button{
+	background-image: url('../assets/delete.png');
+	background-repeat: no-repeat;
+	background-size: contain;
 }
 
 </style>
