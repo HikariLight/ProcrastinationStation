@@ -79,7 +79,16 @@ export default createStore({
 
     setCurrentList(state, list_name){
       state.currentList = list_name;
-    }
+    },
+
+    deleteTodoList(state, index){
+      state.todolists.splice(index, 1);
+    },
+
+    editTodoList(state, index){
+      let edit = prompt("To what do you want to change the entry?")
+      state.todolists[index].title = edit;
+    },
 
   },
 

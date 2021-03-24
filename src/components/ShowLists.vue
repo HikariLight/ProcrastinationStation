@@ -15,13 +15,6 @@
 <script>
 export default {
 	name: 'ToDoList',
-
-	data: function() {
-        return{
-            list_index: "Uni tasks",
-        }
-    },
-
 	computed: {
 		getTodos() {
 			return this.$store.getters.getTodos
