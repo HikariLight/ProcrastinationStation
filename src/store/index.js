@@ -3,43 +3,87 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
+    todolists: [{
+      title: "Uni tasks",
+      todos: [{
+        index: 1,
+        done: false,
+        content: "Finish this project",
+      },{
+        index: 2,
+        done: false,
+        content: "Present the project",      
+      },{
+        index: 3,
+        done: false,
+        content: "Work on all the other projects",
+      }],
+    },
+    {
+    title: "Personal tasks",
     todos: [{
       index: 1,
       done: false,
-      content: "Finish this project",
+      content: "Do the dishes",
     },{
       index: 2,
       done: false,
-      content: "Present the project",      
+      content: "Do the laundry",      
     },{
       index: 3,
       done: false,
-      content: "Work on all the other projects",
+      content: "Take out the trash",
     }],
-
+  }
+  
+  ],
+  
     users: [{
         username: "admin",
         password: "admin",
     }]
   },
   mutations: {
-    addTodo(state, todo){
-      state.todos.push({
-        index: (state.todos.length) + 1,
+
+    addTodoList(state, list_name){
+      state.todolists.push({
+        title: list_name,
+        todos: []
+      })
+    },
+
+    addTodo(state, {list_index, todo_content}){
+      let selected_list = state.todolists[list_index].todos;
+      selected_list.push({
+        index: (selected_list.length) + 1,
         done: false,
-        content: todo
+        content: todo_content
       });
     },
 
-    deleteTodo(state, index){
-      state.todos.splice(index, 1);
+    deleteTodo(state, {list_index, todo_index}){
+      state.todolists[list_index].todos.splice(todo_index, 1);
     },
 
-    editTodo(state, index){
+    editTodo(state, {list_index, todo_index}){
       let edit = prompt("To what do you want to change the entry?")
-      state.todos[index].content = edit;
+      state.todolists[list_index].todos[todo_index].content = edit;
+    },
+
+    doneTodo(state, {list_index, todo_index}){
+      state.todolists[list_index].todos[todo_index].done = !state.todolists[list_index].todos[todo_index].done;
     }
+
   },
   actions: {},
+  getters: {
+    getLists(state){
+      return state.todolists;
+    },
+
+    getTodos(state){
+      return state.todolists.find(todo => todo.title === "Uni tasks")
+    },
+  },
   modules: {}
 })
