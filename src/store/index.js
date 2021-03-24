@@ -45,7 +45,8 @@ export default createStore({
   },
   mutations: {
 
-    addTodoList(state, list_name){
+    addTodoList(state){
+      let list_name = prompt("What would you like the list to be called?");
       state.todolists.push({
         title: list_name,
         todos: []

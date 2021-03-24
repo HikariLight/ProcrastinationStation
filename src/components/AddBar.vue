@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="$store.commit('addTodo', {list_index: 0, todo_content: newTodo})">
-      <label>New entry:</label>
+      <label>New todo:</label>
       <input v-model="newTodo" name="todo" autocomplete="off">
       <button id="add-button">Add Todo</button>
     </form>
