@@ -3,8 +3,10 @@
         <h3>To do lists:</h3>
 
         <ul v-for="(list, index) in getLists" :key="index">
-            <li>{{ list.title }}</li>
+            <li @click="$store.commit('setCurrentList', list.title)">{{ list.title }}</li>
         </ul>
+
+        <button @click="$store.commit('addTodoList')">Add new todolist</button>
     </div>
 </template>
 
@@ -15,7 +17,7 @@ export default {
     computed: {
         getLists() {
             return this.$store.getters.getLists
-        }
+        },
     }
 }
 
@@ -32,6 +34,21 @@ export default {
 
 li{
 	list-style-type: none;
+    cursor: pointer;
+}
+li:hover{
+    background-color: white;
+    color: purple;
+}
+
+button{
+  padding: 10px;
+  margin: 1em;
+  border-radius: 5px;
+  border: #FFFFFF;
+  background-color: #14971F;
+  color: #FFFFFF;
+  cursor: pointer;
 }
 
 </style>
