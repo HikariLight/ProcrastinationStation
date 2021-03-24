@@ -3,6 +3,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
+    currentList: "Uni tasks",
     todolists: [{
       title: "Uni tasks",
       todos: [{
@@ -53,8 +54,9 @@ export default createStore({
       })
     },
 
-    addTodo(state, {list_index, todo_content}){
-      let selected_list = state.todolists[list_index].todos;
+    addTodo(state, todo_content){
+      let selected_list = state.todolists.find(todo => todo.title === state.currentList).todos;
+
       selected_list.push({
         index: (selected_list.length) + 1,
         done: false,
@@ -62,29 +64,39 @@ export default createStore({
       });
     },
 
-    deleteTodo(state, {list_index, todo_index}){
-      state.todolists[list_index].todos.splice(todo_index, 1);
+    deleteTodo(state,todo_index){
+      state.todolists.find(todo => todo.title === state.currentList).todos.splice(todo_index, 1);
     },
 
-    editTodo(state, {list_index, todo_index}){
+    editTodo(state, todo_index){
       let edit = prompt("To what do you want to change the entry?")
-      state.todolists[list_index].todos[todo_index].content = edit;
+      state.todolists.find(todo => todo.title === state.currentList).todos[todo_index].content = edit;
     },
 
-    doneTodo(state, {list_index, todo_index}){
-      state.todolists[list_index].todos[todo_index].done = !state.todolists[list_index].todos[todo_index].done;
+    doneTodo(state, todo_index){
+      state.todolists.find(todo => todo.title === state.currentList).todos[todo_index].done = !state.todolists.find(todo => todo.title === state.currentList).todos[todo_index].done;
+    },
+
+    setCurrentList(state, list_name){
+      state.currentList = list_name;
     }
 
   },
+
   actions: {},
+
   getters: {
     getLists(state){
       return state.todolists;
     },
 
     getTodos(state){
-      return state.todolists.find(todo => todo.title === "Uni tasks")
+      return state.todolists.find(todo => todo.title === state.currentList)
     },
+
+    getCurrentList(state){
+      return state.currentList;
+    }
   },
   modules: {}
 })

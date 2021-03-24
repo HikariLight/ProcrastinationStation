@@ -3,7 +3,7 @@
         <h3>To do lists:</h3>
 
         <ul v-for="(list, index) in getLists" :key="index">
-            <li @click="doSomething">{{ list.title }}</li>
+            <li @click="$store.commit('setCurrentList', list.title)">{{ list.title }}</li>
         </ul>
 
         <button @click="$store.commit('addTodoList')">Add new todolist</button>
@@ -18,10 +18,6 @@ export default {
         getLists() {
             return this.$store.getters.getLists
         },
-
-        doSomething(){
-            console.log("Thing");
-        }
     }
 }
 

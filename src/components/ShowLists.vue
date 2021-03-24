@@ -3,10 +3,10 @@
         <h3>{{getTodos.title}}</h3>    
         <ul>
         <li v-for="(todo, index) in getTodos.todos" :key="index">
-            <input @change="$store.commit('doneTodo', {list_index: 0, todo_index: index})" type="checkbox">
+            <input @change="$store.commit('doneTodo', index)" type="checkbox">
             <label :class="{ done : todo.done}">{{todo.content}}</label>
-            <button class="list-buttons" id="edit-button" @click="$store.commit('editTodo', {list_index: 0, todo_index: index})"></button>
-            <button class="list-buttons" id="delete-button" @click="$store.commit('deleteTodo', {list_index: 0, todo_index: index})"></button>
+            <button class="list-buttons" id="edit-button" @click="$store.commit('editTodo', index)"></button>
+            <button class="list-buttons" id="delete-button" @click="$store.commit('deleteTodo', index)"></button>
         </li>
         </ul>
     </div>
