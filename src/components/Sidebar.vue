@@ -22,14 +22,13 @@ export default {
         },
     }
 }
-
 </script>
 
 <style scoped>
+
 .container{
-    padding: 1em;
-    margin: 0px auto;
-    border-radius: 2px;
+    border: 1px solid purple;
+    float:left;
 }
 
 h3{

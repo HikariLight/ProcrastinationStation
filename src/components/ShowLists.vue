@@ -9,23 +9,33 @@
             <button class="list-buttons" id="delete-button" @click="$store.commit('deleteTodo', index)"></button>
         </li>
         </ul>
+
+		<button @click="hideDoneTodos" id="hideButton">Hide done todos</button>
     </div>
 </template>
 
 <script>
 export default {
-	name: 'ToDoList',
+	name: 'ShowLists',
+
 	computed: {
 		getTodos() {
 			return this.$store.getters.getTodos
 		}
-	}
+	},
+
 }
 </script>
 
 <style scoped>
+
+h3{
+	color: #14971F;
+}
+
 .container{
-	font-size: 16px;
+    border: 1px solid #14971F;
+	float:right;
 }
 
 label{
@@ -34,6 +44,15 @@ label{
 
 input{
   padding: 1em;
+}
+
+#hideButton{
+  padding: 10px;
+  margin: 1em;
+  border-radius: 5px;
+  border: #FFFFFF;
+  background-color: crimson;
+  color: #FFFFFF;
 }
 
 #add-button{

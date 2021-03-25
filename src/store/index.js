@@ -82,6 +82,7 @@ export default createStore({
     },
 
     deleteTodoList(state, index){
+      console.log(state.todolists.splice(index, 1));
       state.todolists.splice(index, 1);
     },
 

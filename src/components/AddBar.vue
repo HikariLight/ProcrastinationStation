@@ -9,7 +9,7 @@
 
 <script>
 export default {
-	name: 'ToDoList',
+	name: 'AddBar',
 }
 
 </script>

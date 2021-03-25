@@ -1,12 +1,13 @@
 <template>
-  <Home />
+  <h1>Procrastination Station</h1>
+  <TodoApp />
 </template>
 
 <script>
-import Home from '@/views/Home.vue'
+import TodoApp from '@/views/TodoApp.vue'
 
 export default{
-  components: { Home }
+  components: {TodoApp}
 }
 
 </script>
@@ -18,5 +19,12 @@ export default{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.container{
+    min-width: 45%;
+    padding: 1em;
+    margin: 0.5em, 0.5em;
+    display: inline-block;
 }
 </style>

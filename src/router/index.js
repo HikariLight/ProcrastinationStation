@@ -1,8 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Login from '../components/Login.vue'
-import Register from '../components/Register.vue'
-import App from '../views/App.vue'
+import Login from '../views/Login.vue'
+import Register from '../views/Register.vue'
+import TodoApp from '../views/TodoApp.vue'
+import About from '../views/About.vue'
 
 const routes = [
   {
@@ -22,8 +23,13 @@ const routes = [
   },
   {
     path: '/app',
-    name: 'App',
-    component: App
+    name: 'TodoApp',
+    component: TodoApp
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About
   }
 ]
 
