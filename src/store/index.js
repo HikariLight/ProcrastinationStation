@@ -106,7 +106,12 @@ export default createStore({
 
     getCurrentList(state){
       return state.currentList;
+    },
+
+    getListLength(state){
+      return state.todolists.find(todo => todo.title === state.currentList).todos.length;
     }
+
   },
   modules: {}
 })

@@ -1,5 +1,6 @@
 <template>
-  <h1>Procrastination Station</h1>
+  <img id="logo" src="./assets/logo.png">
+  <h1 id="headerTitle">Procrastination Station</h1>
   <TodoApp />
 </template>
 
@@ -26,5 +27,16 @@ export default{
     padding: 1em;
     margin: 0.5em, 0.5em;
     display: inline-block;
+}
+
+#headerTitle{
+  display: inline-block;
+}
+
+
+#logo{
+  display: inline-block;
+  length: 36px;
+  width: 36px;
 }
 </style>
