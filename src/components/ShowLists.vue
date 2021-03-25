@@ -40,8 +40,7 @@ export default {
 			else{
 				doneTodos.forEach(todo => todo.parentElement.classList.remove("hiddenTodo"));
 			}
-			// doneTodos.forEach(todo => todo.remove());
-		}
+		},
 	}
 
 }
