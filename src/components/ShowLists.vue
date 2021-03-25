@@ -18,11 +18,31 @@
 export default {
 	name: 'ShowLists',
 
+	data: function(){
+		return{
+			toggleDoneTodos: false,
+		}
+	},
+
 	computed: {
 		getTodos() {
 			return this.$store.getters.getTodos
 		}
 	},
+	methods: {
+		hideDoneTodos(){
+			this.toggleDoneTodos = !this.toggleDoneTodos
+			let doneTodos = document.getElementsByClassName("done");
+			
+			if(this.toggleDoneTodos){
+				doneTodos.forEach(todo => todo.parentElement.classList.add("hiddenTodo"));
+			}
+			else{
+				doneTodos.forEach(todo => todo.parentElement.classList.remove("hiddenTodo"));
+			}
+			// doneTodos.forEach(todo => todo.remove());
+		}
+	}
 
 }
 </script>
@@ -71,6 +91,10 @@ li{
 
 .done{
 	text-decoration: line-through;
+}
+
+.hiddenTodo{
+	display: none;
 }
 
 .list-buttons {
